@@ -1,42 +1,91 @@
-# sv
+# Documentation - Calculateur de Trajet pour Vehicules Electriques
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## Vue d'ensemble
 
-## Creating a project
+Application web calculant le temps de trajet pour vehicules electriques en tenant compte des recharges necessaires. Architecture SOAP avec frontend Svelte et backend Python.
 
-If you're seeing this, you've probably already done this step. Congrats!
+---
 
-```sh
-# create a new project
-npx sv create my-app
+## Installation et Demarrage
+
+### Installation
+
+```bash
+# Cloner le projet
+git clone https://github.com/TimeoCHATELAIN/info802_RenduFinal.git
+cd info802_RenduFinal
+
+# Dependances JavaScript
+npm install
+
+# Environnement Python
+cd soap
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install spyne lxml
 ```
 
-To recreate this project with the same configuration:
+### Demarrage
 
-```sh
-# recreate this project
-npx sv create --template minimal --types jsdoc --install npm my-app
+**Terminal 1 - Service SOAP:**
+```bash
+cd soap
+source venv/bin/activate  # Windows: venv\Scripts\activate
+python vehiculeService.py
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
+**Terminal 2 - Application Web:**
+```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+Acces: http://localhost:5174
 
-To create a production version of your app:
+---
 
-```sh
-npm run build
+## Architecture
+
+```
+src/
+├── lib/
+│   ├── components/CalculateurTrajet.svelte    # Formulaire et resultats
+│   ├── mapboxLoader.js                        # Configuration carte
+│   └── soapClient.js                          # Client SOAP
+├── routes/+page.svelte                        # Page principale
+└── styles/app.css                             # Styles
+
+soap/
+└── vehiculeService.py                         # Service SOAP backend
 ```
 
-You can preview the production build with `npm run preview`.
+---
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Fonctionnement
+
+### Service SOAP
+
+Methode `calculerTempsTrajet` avec parametres:
+- distance (km), vitesse (km/h), autonomie (km), temps_chargement (minutes)
+
+### Formule
+
+```python
+nb_recharges = max(0, ceil(distance / autonomie) - 1)
+temps_total = (distance / vitesse) + nb_recharges * (temps_chargement / 60)
+```
+
+### Exemple
+
+Trajet 400 km a 110 km/h, autonomie 350 km, recharge 30 min:
+- Recharges: 1
+- Temps conduite: 3.64h
+- Temps recharge: 0.5h
+- **Total: 4.14h**
+
+---
+
+## Technologies
+
+- Python/Spyne: Service SOAP
+- Svelte/Vite: Frontend
+- Mapbox GL: Carte interactive

@@ -1,0 +1,246 @@
+/* Styles globaux */
+html,body {
+	margin: 0;
+	padding: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+/* Carte Mapbox */
+.map-container {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100vh;
+}
+
+/* Panel principal */
+.panel {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 400px;
+	max-height: calc(100vh - 40px);
+	background: white;
+	border-radius: 12px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+	overflow-y: auto;
+	z-index: 1000;
+}
+
+/* Panel de recherche */
+.recherche-panel {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 400px;
+	max-height: calc(100vh - 40px);
+	overflow-y: auto;
+	z-index: 1000;
+}
+
+.panel-header {
+	padding: 24px 24px 16px;
+	border-bottom: 1px solid #e5e7eb;
+}
+
+.panel-header h1 {
+	margin: 0 0 4px 0;
+	font-size: 24px;
+	font-weight: 700;
+	color: #1f2937;
+}
+
+.subtitle {
+	margin: 0;
+	font-size: 14px;
+	color: #6b7280;
+}
+
+/* Alertes */
+.alert {
+	margin-top: 12px;
+	padding: 12px;
+	border-radius: 8px;
+	font-size: 14px;
+}
+
+.alert-warning {
+	background: #fef3c7;
+	color: #92400e;
+	border: 1px solid #fde68a;
+}
+
+.alert-error {
+	background: #fee2e2;
+	color: #991b1b;
+	border: 1px solid #fecaca;
+}
+
+/* Formulaire */
+.form {
+	padding: 24px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 600;
+	font-size: 14px;
+	color: #374151;
+}
+
+.form-group input {
+	width: 100%;
+	padding: 12px;
+	border: 2px solid #e5e7eb;
+	border-radius: 8px;
+	font-size: 16px;
+	transition: border-color 0.2s;
+	box-sizing: border-box;
+}
+
+.form-group input:focus {
+	outline: none;
+	border-color: #3b82f6;
+}
+
+/* Bouton */
+.btn-calculer {
+	width: 100%;
+	padding: 14px;
+	background: #3b82f6;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+
+.btn-calculer:hover:not(:disabled) {
+	background: #2563eb;
+}
+
+.btn-calculer:disabled {
+	background: #9ca3af;
+	cursor: not-allowed;
+}
+
+/* Résultats */
+.resultat {
+	padding: 24px;
+	border-top: 1px solid #e5e7eb;
+}
+
+.resultat h2 {
+	margin: 0 0 20px 0;
+	font-size: 20px;
+	font-weight: 700;
+	color: #1f2937;
+}
+
+.resultat-principal {
+	background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+	padding: 24px;
+	border-radius: 12px;
+	margin-bottom: 20px;
+}
+
+.temps-total {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.temps-total .label {
+	color: rgba(255, 255, 255, 0.9);
+	font-size: 14px;
+	margin-bottom: 8px;
+}
+
+.temps-total .valeur {
+	color: white;
+	font-size: 36px;
+	font-weight: 700;
+}
+
+.details-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 12px;
+}
+
+.detail-card {
+	display: flex;
+	align-items: center;
+	padding: 16px;
+	background: #f9fafb;
+	border-radius: 8px;
+	gap: 12px;
+	justify-content: space-between;
+}
+
+.detail-label {
+	flex: 1;
+	font-size: 14px;
+	color: #6b7280;
+}
+
+.detail-valeur {
+	font-size: 18px;
+	font-weight: 700;
+	color: #1f2937;
+}
+
+/* Informations itineraire */
+.itineraire-info {
+	background: white;
+	border-radius: 8px;
+	padding: 16px;
+	margin-top: 12px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.itineraire-info h3 {
+	margin: 0 0 12px 0;
+	font-size: 16px;
+	font-weight: 700;
+	color: #1f2937;
+}
+
+.info-item {
+	display: flex;
+	justify-content: space-between;
+	padding: 8px 0;
+	border-bottom: 1px solid #f3f4f6;
+}
+
+.info-item:last-child {
+	border-bottom: none;
+}
+
+.info-item .label {
+	font-size: 14px;
+	color: #6b7280;
+}
+
+.info-item .value {
+	font-size: 14px;
+	font-weight: 600;
+	color: #1f2937;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.panel {
+		width: calc(100vw - 40px);
+		max-width: 400px;
+	}
+}
